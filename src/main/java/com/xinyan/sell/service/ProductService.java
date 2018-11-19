@@ -45,4 +45,7 @@ public interface ProductService {
      * @param cartDTOList
      */
     void decreaseStock(List<CartDTO> cartDTOList);
+
+    //加库存
+    void increaseStock(List<CartDTO> cartDTOList);
 }

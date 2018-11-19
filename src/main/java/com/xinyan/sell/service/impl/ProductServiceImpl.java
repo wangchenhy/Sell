@@ -1,6 +1,7 @@
 package com.xinyan.sell.service.impl;
 
 import com.xinyan.sell.dto.CartDTO;
+import com.xinyan.sell.enums.ResultStatus;
 import com.xinyan.sell.exception.SellException;
 import com.xinyan.sell.po.ProductInfo;
 import com.xinyan.sell.repository.ProductRepository;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -21,6 +23,9 @@ import java.util.List;
 @Slf4j
 @Service
 public class ProductServiceImpl implements ProductService {
+
+    @Autowired
+    private ProductRepository repository;
 
     @Autowired
     private ProductRepository productRepository;
@@ -78,6 +83,29 @@ public class ProductServiceImpl implements ProductService {
             productRepository.save(productInfo);
         }
 
+
+    }
+
+    /**
+     * 加库存
+     * @param cartDTOList
+     */
+    @Override
+    @Transactional//事物
+    public void increaseStock(List<CartDTO> cartDTOList) {
+        for (CartDTO cartDTO: cartDTOList) {
+            //先查询
+            ProductInfo productInfo = repository.findOne(cartDTO.getProductId());
+            //不存在抛自定义异常
+            if (productInfo == null) {
+                throw new SellException(ResultStatus.PRODUCT_NOT_EXIST);
+            }
+            //增加库存
+            Integer result = productInfo.getProductStock() + cartDTO.getProductQuantity();
+            productInfo.setProductStock(result);
+
+            repository.save(productInfo);
+        }
 
     }
 }
