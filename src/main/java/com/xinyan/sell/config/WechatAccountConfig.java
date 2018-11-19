@@ -10,7 +10,7 @@ import java.util.Map;
  * 微信公众账号配置
  */
 @Data
-@ConfigurationProperties(prefix = "wechat")
+//@ConfigurationProperties(prefix = "wechat")
 @Configuration
 public class WechatAccountConfig {
 
