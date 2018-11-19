@@ -14,9 +14,10 @@ import java.util.List;
 public interface OrderDetailRepository extends
         JpaRepository<OrderDetail, String> {
 
-    /** 查询订单详情：
+    /** 查询订单商品详情：
      * @param orderId 订单ID
      * @return
      */
     List<OrderDetail> findByOrderId(String orderId);
+
 }

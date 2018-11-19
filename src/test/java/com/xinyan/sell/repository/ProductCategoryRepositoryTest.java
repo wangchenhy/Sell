@@ -28,6 +28,7 @@ public class ProductCategoryRepositoryTest {
      */
     @Test
     public void findOneTest(){
+        /** 传入id=1 */
         ProductCategory productCategory = repository.findOne(1);
         System.out.println(productCategory);
         Assert.assertNotNull("根据ID查询类目",productCategory);

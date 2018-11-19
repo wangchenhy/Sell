@@ -57,7 +57,7 @@ public class OrderDetailRepositoryTest {
     }
 
     /**
-     *
+     *根据订单id 查询买家信息
      */
     @Test
     public void findByOrderId() {
