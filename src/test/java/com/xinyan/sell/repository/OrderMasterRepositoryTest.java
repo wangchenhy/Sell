@@ -39,8 +39,8 @@ public class OrderMasterRepositoryTest {
         orderMaster.setOrderAmount(new BigDecimal("28"));
 
 
-        OrderMaster result = repository.save(orderMaster);
-        Assert.assertNotEquals("保存订单", result);
+        repository.save(orderMaster);
+//        Assert.assertNotEquals("保存订单", result);
     }
 
 

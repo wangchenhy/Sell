@@ -10,6 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -46,5 +48,8 @@ public class ProductServiceTest {
      */
     @Test
     public void findByProductStatus() {
+
+        List<ProductInfo> byProductStatus = productService.findByProductStatus(0);
+        Assert.assertNotEquals(0,byProductStatus);
     }
 }

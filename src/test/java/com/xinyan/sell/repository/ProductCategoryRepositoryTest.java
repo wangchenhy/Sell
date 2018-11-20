@@ -42,7 +42,7 @@ public class ProductCategoryRepositoryTest {
     public void saveTest(){
         ProductCategory productCategory = new ProductCategory();
         productCategory.setCategoryName("女生最爱");
-        productCategory.setCategoryType(12);
+        productCategory.setCategoryType(11);
 
         ProductCategory result = repository.save(productCategory);
         Assert.assertNotEquals(null,result);
