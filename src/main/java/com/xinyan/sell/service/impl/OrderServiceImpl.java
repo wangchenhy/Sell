@@ -10,8 +10,12 @@ import com.xinyan.sell.po.ProductInfo;
 import com.xinyan.sell.repository.OrderDetailRepository;
 import com.xinyan.sell.repository.OrderMasterRepository;
 import com.xinyan.sell.repository.ProductRepository;
+<<<<<<< Updated upstream
 import com.xinyan.sell.service.OrderService;
 import com.xinyan.sell.service.ProductService;
+=======
+import com.xinyan.sell.service.*;
+>>>>>>> Stashed changes
 import com.xinyan.sell.utils.KeyUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
@@ -33,8 +37,6 @@ import java.util.stream.Collectors;
 @Service
 public class OrderServiceImpl implements OrderService {
 
-
-
     @Autowired
     private ProductRepository productRepository;
 
@@ -45,6 +47,18 @@ public class OrderServiceImpl implements OrderService {
     private OrderMasterRepository orderMasterRepository;
 
     @Autowired
+<<<<<<< Updated upstream
+=======
+    private PayService payService;
+
+    @Autowired
+    private PushMessageService pushMessageService;
+
+    @Autowired
+    private WebSocket webSocket;
+
+    @Autowired
+>>>>>>> Stashed changes
     private ProductService productService;
 
 
@@ -91,8 +105,10 @@ public class OrderServiceImpl implements OrderService {
         List<CartDTO> cartDTOList = orderDTO.getOrderDetailList().stream()
                 .map(e -> new CartDTO(e.getProductId(), e.getProductQuantity()))
                 .collect(Collectors.toList());
-
         productService.decreaseStock(cartDTOList);
+
+        //发送webSocket消息
+        webSocket.sendMessage(orderDTO.getOrderId());
 
         return orderDTO;
     }

@@ -12,7 +12,7 @@ import lombok.Getter;
 @Getter
 public class ResultVOUtil {
 
-    /** 返视图信息
+    /** 返成功时视图信息
      * @param data
      * @return
      */
@@ -22,6 +22,22 @@ public class ResultVOUtil {
         resultVO.setMsg("成功");
         resultVO.setData(data);
 
+        return resultVO;
+    }
+
+    public static ResultVO success() {
+        return success(null);
+    }
+
+    /**返回错误时信息
+     * @param code
+     * @param msg
+     * @return
+     */
+    public static ResultVO error(Integer code, String msg) {
+        ResultVO resultVO = new ResultVO();
+        resultVO.setCode(code);
+        resultVO.setMsg(msg);
         return resultVO;
     }
 }

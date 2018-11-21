@@ -35,6 +35,12 @@ public interface ProductService {
      */
     Page<ProductInfo> findAll(Pageable pageable);
 
+    /**添加商品
+     * @param productInfo
+     * @return
+     */
+    ProductInfo save(ProductInfo productInfo);
+
     /**根据商品状态查询
      * @param productStatus
      * @return

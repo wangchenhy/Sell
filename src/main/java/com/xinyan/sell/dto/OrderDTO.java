@@ -1,8 +1,18 @@
 package com.xinyan.sell.dto;
 
+<<<<<<< Updated upstream
 import com.xinyan.sell.po.OrderDetail;
 import com.xinyan.sell.enums.OrderStatus;
 import com.xinyan.sell.enums.PayStatus;
+=======
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.xinyan.sell.po.OrderDetail;
+import com.xinyan.sell.enums.OrderStatus;
+import com.xinyan.sell.enums.PayStatus;
+import com.xinyan.sell.utils.EnumUtil;
+import com.xinyan.sell.utils.serializer.Date2LongSerializer;
+>>>>>>> Stashed changes
 import lombok.Data;
 
 import java.math.BigDecimal;
@@ -43,10 +53,11 @@ public class OrderDTO {
     private Integer payStatus = PayStatus.WAIT.getCode();
 
     /** 创建时间 */
-//    @JsonSerialize(using = )
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date createTime;
 
     /** 修改时间 */
+    @JsonSerialize(using = Date2LongSerializer.class)
     private Date updateTime;
 
     /** 订单详情 */
