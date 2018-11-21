@@ -12,3 +12,5 @@ jpa:
 
 server:
   context-path: /sell
+jackson:
+  default-property-inclusion: non_null
