@@ -47,8 +47,25 @@ public interface ProductService {
      */
     List<ProductInfo> findByProductStatus(Integer productStatus);
 
-    /**更新库存
+    /** 加库存
+     * @param cartDTOList
+     */
+    void increaseStock(List<CartDTO> cartDTOList);
+
+    /**减库存
      * @param cartDTOList
      */
     void decreaseStock(List<CartDTO> cartDTOList);
+
+    /** 上架
+     * @param productId
+     * @return
+     */
+    ProductInfo onSale(String productId);
+
+    /**下架
+     * @param productId
+     * @return
+     */
+    ProductInfo offSale(String productId);
 }

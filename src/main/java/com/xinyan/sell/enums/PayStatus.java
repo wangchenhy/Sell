@@ -9,7 +9,7 @@ import lombok.Getter;
  * 订单支付状态
  */
 @Getter
-public enum PayStatus {
+public enum PayStatus implements CodeEnum{
 
     WAIT(0,"未支付"),
     PAID(1,"已支付")

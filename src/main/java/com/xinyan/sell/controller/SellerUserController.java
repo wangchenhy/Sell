@@ -24,8 +24,6 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 卖家用户
- * Created by 廖师兄
- * 2017-07-30 15:28
  */
 @Controller
 @RequestMapping("/seller")
@@ -46,7 +44,7 @@ public class SellerUserController {
                               Map<String, Object> map) {
 
         //1. openid去和数据库里的数据匹配
-        SellerInfo sellerInfo = sellerService.findSellerByOpenid(openid);
+        SellerInfo sellerInfo = sellerService.findSellerInfoByOpenid(openid);
         if (sellerInfo == null) {
             map.put("msg", ResultStatus.LOGIN_FAIL.getMessage());
             map.put("url", "/sell/seller/order/list");

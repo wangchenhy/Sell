@@ -1,5 +1,8 @@
 package com.xinyan.sell.po;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.xinyan.sell.enums.ProductStatus;
+import com.xinyan.sell.utils.EnumUtil;
 import lombok.Data;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -38,11 +41,16 @@ public class ProductInfo {
     private String productIcon;
 
     /** 商品状态 */
-    private Integer productStatus = 0;
+    private Integer productStatus = ProductStatus.UP.getCode();
 
     /** 商品类型 */
     private Integer categoryType;
 
     /** 商品创建时间 */
     private Date createTime;
+
+    @JsonIgnore
+    public ProductStatus getProductStatusEnum() {
+        return EnumUtil.getByCode(productStatus, ProductStatus.class);
+    }
 }
