@@ -62,7 +62,7 @@ public class OrderDetailRepositoryTest {
      */
     @Test
     public void findByOrderId() {
-        List<OrderDetail> orderDetailList = orderDetailRepository.findByOrderId("11111111");
+        List<OrderDetail> orderDetailList = orderDetailRepository.findByOrderId("34725fd6e8264fa5853a2b947f1bd599");
         Assert.assertNotEquals(0, orderDetailList.size());
     }
 }

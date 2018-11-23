@@ -1,6 +1,5 @@
 package com.xinyan.sell.controller;
 
-import com.xinyan.sell.config.ProjectUrlConfig;
 import com.xinyan.sell.constant.CookieConstant;
 import com.xinyan.sell.constant.RedisConstant;
 import com.xinyan.sell.enums.ResultStatus;
