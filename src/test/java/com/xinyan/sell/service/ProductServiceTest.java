@@ -1,5 +1,6 @@
 package com.xinyan.sell.service;
 
+import com.xinyan.sell.enums.ProductStatus;
 import com.xinyan.sell.po.ProductInfo;
 import org.junit.Assert;
 import org.junit.Test;
@@ -9,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -45,6 +48,26 @@ public class ProductServiceTest {
      * 根据状态查询商品
      */
     @Test
-    public void findByProductStatus() {
+    public void findByProductStatus(Integer productStatus) {
+        List<ProductInfo> productInfoList = productService.findByProductStatus(productStatus);
+        Assert.assertNotEquals(0, productInfoList.size());
+    }
+
+    /**
+     * 上架测试
+     */
+    @Test
+    public void onSale() {
+        ProductInfo result = productService.onSale("123456");
+        Assert.assertEquals(ProductStatus.UP, result.getProductStatusEnum());
+    }
+
+    /**
+     * 下架测试
+     */
+    @Test
+    public void offSale() {
+        ProductInfo result = productService.offSale("123456");
+        Assert.assertEquals(ProductStatus.DOWN, result.getProductStatusEnum());
     }
 }

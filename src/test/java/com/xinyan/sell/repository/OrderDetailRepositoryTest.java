@@ -11,6 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 /**
  *
@@ -57,9 +58,11 @@ public class OrderDetailRepositoryTest {
     }
 
     /**
-     *
+     * 通过用户微信id查询
      */
     @Test
     public void findByOrderId() {
+        List<OrderDetail> orderDetailList = orderDetailRepository.findByOrderId("11111111");
+        Assert.assertNotEquals(0, orderDetailList.size());
     }
 }
