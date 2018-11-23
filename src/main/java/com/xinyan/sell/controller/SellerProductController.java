@@ -46,10 +46,14 @@ public class SellerProductController {
      */
     @GetMapping("/list")
     public ModelAndView list(@RequestParam(value = "page", defaultValue = "1") Integer page,
-                             @RequestParam(value = "size", defaultValue = "10") Integer size,
+                             @RequestParam(value = "size", defaultValue = "3") Integer size,
                              Map<String, Object> map) {
+        //1.查询含商品信息的分页
         PageRequest request = new PageRequest(page - 1, size);
         Page<ProductInfo> productInfoPage = productService.findAll(request);
+        //2.查询所有商品类目
+        List<ProductCategory> productCategoryList = categoryService.findAll();
+        map.put("productCategoryList",productCategoryList);
         map.put("productInfoPage", productInfoPage);
         map.put("currentPage", page);
         map.put("size", size);

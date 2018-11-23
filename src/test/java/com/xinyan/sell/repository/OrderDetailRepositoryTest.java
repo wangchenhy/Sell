@@ -35,18 +35,18 @@ public class OrderDetailRepositoryTest {
 
         OrderMaster orderMaster = new OrderMaster();
         orderMaster.setOrderId(orderId);
-        orderMaster.setBuyerName("张三");
-        orderMaster.setBuyerPhone("1234321543534");
+        orderMaster.setBuyerName("王五");
+        orderMaster.setBuyerPhone("6584675467");
         orderMaster.setBuyerAddress("广东深圳");
-        orderMaster.setBuyerOpenid("3421534543");
+        orderMaster.setBuyerOpenid("654654");
         orderMaster.setOrderAmount(new BigDecimal("28"));
 
 
         OrderDetail orderDetail = new OrderDetail();
         orderDetail.setDetailId(KeyUtil.genericKey());
         orderDetail.setOrderId(orderId);
-        orderDetail.setProductId("f245t34twafr4");
-        orderDetail.setProductName("鱼香肉丝");
+        orderDetail.setProductId("fbghwrs657df");
+        orderDetail.setProductName("湖南小炒肉");
         orderDetail.setProductPrice(new BigDecimal("28"));
         orderDetail.setProductQuantity(1);
         orderDetail.setProductIcon("http:");

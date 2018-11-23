@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 /**
- *
+ *卖家接口查询
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest

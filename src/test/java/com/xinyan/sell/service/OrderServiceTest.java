@@ -23,16 +23,16 @@ public class OrderServiceTest {
     @Autowired
     private OrderService orderService;
 
-    private final String BUYER_OPENID = "1101110";
+    private final String BUYER_OPENID = "3421534543";
 
-    private final String ORDER_ID = "1497183332311989948";
+    private final String ORDER_ID = "34725fd6e8264fa5853a2b947f1bd599";
 
     @Test
     public void createOrder() {
         OrderDTO orderDTO = new OrderDTO();
         orderDTO.setBuyerName("张三");
         orderDTO.setBuyerPhone("1234321543534");
-        orderDTO.setBuyerAddress("深圳广东");
+        orderDTO.setBuyerAddress("深圳");
         orderDTO.setBuyerOpenid("3421534543");
     }
 
@@ -64,12 +64,6 @@ public class OrderServiceTest {
         Assert.assertEquals(OrderStatus.FINISH.getCode(), result.getOrderStatus());
     }
 
-    @Test
-    public void paid() throws Exception {
-        OrderDTO orderDTO = orderService.findOne(ORDER_ID);
-        OrderDTO result = orderService.paid(orderDTO);
-        Assert.assertEquals(PayStatus.PAID.getCode(), result.getPayStatus());
-    }
 
     @Test
     public void list() {

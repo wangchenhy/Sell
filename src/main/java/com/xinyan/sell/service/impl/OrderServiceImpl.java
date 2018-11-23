@@ -49,12 +49,6 @@ public class OrderServiceImpl implements OrderService {
     private OrderMasterRepository orderMasterRepository;
 
     @Autowired
-    private PushMessageService pushMessageService;
-
-    @Autowired
-    private WebSocket webSocket;
-
-    @Autowired
     private ProductService productService;
 
 
@@ -103,9 +97,6 @@ public class OrderServiceImpl implements OrderService {
                 .collect(Collectors.toList());
         productService.decreaseStock(cartDTOList);
 
-        //发送webSocket消息
-        webSocket.sendMessage(orderDTO.getOrderId());
-
         return orderDTO;
     }
 
@@ -115,6 +106,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public OrderDTO findOne(String orderId) {
+
         OrderMaster orderMaster = orderMasterRepository.findOne(orderId);
         if (orderMaster == null) {
             throw new SellException(ResultStatus.ORDER_NOT_EXIST);
@@ -205,41 +197,12 @@ public class OrderServiceImpl implements OrderService {
             throw new SellException(ResultStatus.ORDER_UPDATE_FAIL);
         }
 
-        //推送微信模版消息
-        pushMessageService.orderStatus(orderDTO);
-
         return orderDTO;
     }
 
-    /**支付订单
-     * @param orderDTO
-     * @return
-     */
     @Override
     public OrderDTO paid(OrderDTO orderDTO) {
-        //判断订单状态
-        if (!orderDTO.getOrderStatus().equals(OrderStatus.NEW.getCode())) {
-            log.error("【订单支付完成】订单状态不正确, orderId={}, orderStatus={}", orderDTO.getOrderId(), orderDTO.getOrderStatus());
-            throw new SellException(ResultStatus.ORDER_STATUS_ERROR);
-        }
-
-        //判断支付状态
-        if (!orderDTO.getPayStatus().equals(PayStatus.WAIT.getCode())) {
-            log.error("【订单支付完成】订单支付状态不正确, orderDTO={}", orderDTO);
-            throw new SellException(ResultStatus.ORDER_PAY_STATUS_ERROR);
-        }
-
-        //修改支付状态
-        orderDTO.setPayStatus(PayStatus.PAID.getCode());
-        OrderMaster orderMaster = new OrderMaster();
-        BeanUtils.copyProperties(orderDTO, orderMaster);
-        OrderMaster updateResult = orderMasterRepository.save(orderMaster);
-        if (updateResult == null) {
-            log.error("【订单支付完成】更新失败, orderMaster={}", orderMaster);
-            throw new SellException(ResultStatus.ORDER_UPDATE_FAIL);
-        }
-
-        return orderDTO;
+        return null;
     }
 
     /**查询订单列表

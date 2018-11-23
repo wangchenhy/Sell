@@ -58,7 +58,7 @@ public class ProductServiceTest {
      */
     @Test
     public void onSale() {
-        ProductInfo result = productService.onSale("123456");
+        ProductInfo result = productService.onSale("1542167003478563456");
         Assert.assertEquals(ProductStatus.UP, result.getProductStatusEnum());
     }
 
@@ -67,7 +67,7 @@ public class ProductServiceTest {
      */
     @Test
     public void offSale() {
-        ProductInfo result = productService.offSale("123456");
+        ProductInfo result = productService.offSale("1542167003478563456");
         Assert.assertEquals(ProductStatus.DOWN, result.getProductStatusEnum());
     }
 }
