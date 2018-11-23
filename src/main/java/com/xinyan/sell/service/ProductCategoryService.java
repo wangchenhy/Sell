@@ -31,4 +31,8 @@ public interface ProductCategoryService {
      * @return
      */
     List<ProductCategory> findAll(List<Integer> categoryTypeList);
+
+    List<ProductCategory> findByCategoryTypeIn(List<Integer> categoryTypeList);
+
+    ProductCategory save(ProductCategory productCategory);
 }
