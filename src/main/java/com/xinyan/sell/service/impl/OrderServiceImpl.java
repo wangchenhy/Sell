@@ -49,9 +49,6 @@ public class OrderServiceImpl implements OrderService {
     private OrderMasterRepository orderMasterRepository;
 
     @Autowired
-    private PayService payService;
-
-    @Autowired
     private PushMessageService pushMessageService;
 
     @Autowired
@@ -182,10 +179,6 @@ public class OrderServiceImpl implements OrderService {
                 .collect(Collectors.toList());
         productService.increaseStock(cartDTOList);
 
-        //如果已支付, 需要退款
-        if (orderDTO.getPayStatus().equals(ResultStatus.SUCCESS.getCode())) {
-            payService.refund(orderDTO);
-        }
 
         return orderDTO;
     }
